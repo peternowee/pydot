@@ -92,12 +92,16 @@ DEFAULT_PROGRAMS = {
 
 def is_windows():
     # type: () -> bool
+    print("In is_windows")
     return os.name == 'nt'
 
 
 def is_anacoda():
     # type: () -> bool
-    return os.path.exists(os.path.join(sys.prefix, 'conda-meta'))
+    import glob
+    print("In is_anacoda()")
+    print(glob.glob(os.path.join(sys.prefix, 'conda-meta\\graphviz*.json')))
+    return glob.glob(os.path.join(sys.prefix, 'conda-meta\\graphviz*.json')) != []
 
 
 def get_executable_extension():
