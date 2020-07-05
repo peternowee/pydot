@@ -19,10 +19,6 @@ skip_branch_with_pr: true
 environment:
 
   matrix:
-    - JOB: "2.7 32-bit"
-      PYTHON_VERSION: 2.7
-      MINICONDA_DIRNAME: "C:\\Miniconda"
-
     - JOB: "3.6 64-bit"
       PYTHON_VERSION: 3.6
       MINICONDA_DIRNAME: "C:\\Miniconda36-x64"
@@ -45,7 +41,8 @@ install:
   - cmd: conda create --quiet --name conda-env-%PYTHON_VERSION% python=%PYTHON_VERSION%
   - cmd: activate conda-env-%PYTHON_VERSION%
   - cmd: conda config --add channels anaconda
-  - cmd: conda install --quiet --file requirements-conda.txt
+  - cmd: conda config --add channels alubbock
+  - cmd: conda install --file requirements-conda.txt
   - cmd: python setup.py develop
 
 

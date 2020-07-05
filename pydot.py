@@ -100,8 +100,8 @@ def is_anacoda():
     # type: () -> bool
     import glob
     print("In is_anacoda()")
-    print(glob.glob(os.path.join(sys.prefix, 'conda-meta\\blahblah*.json')))
-    return glob.glob(os.path.join(sys.prefix, 'conda-meta\\blahblah*.json')) != []
+    print(glob.glob(os.path.join(sys.prefix, 'conda-meta\\graphviz*.json')))
+    return glob.glob(os.path.join(sys.prefix, 'conda-meta\\graphviz*.json')) != []
 
 
 def get_executable_extension():
