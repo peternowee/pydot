@@ -14,6 +14,7 @@ import pickle
 import string
 import subprocess
 import sys
+import tempfile
 import warnings
 
 import chardet
@@ -345,6 +346,22 @@ class TestGraphAPI(unittest.TestCase):
         u = pydot.Node('a')
         g.add_node(u)
         g.write_svg('test.svg', prog=['twopi', '-Goverlap=scale'])
+
+    def test_mixup_dynamically_generated_get_set(self):
+        n = pydot.Node()
+        s = 'blue'
+        n.set_color(s)
+        self.assertEqual(n.get_color(), s)
+
+    def test_mixup_dynamically_generated_create_write(self):
+        g = pydot.Dot()
+        self.assertIs(type(g.create_dot()), bytes)
+        f = tempfile.NamedTemporaryFile(delete=False)
+        f.close()
+        try:
+            self.assertIs(g.write_raw(f.name), None)
+        finally:
+            os.remove(f.name)
 
 
 def check_path():
